@@ -2,18 +2,19 @@
   "manifest": {
     "publishingInformation": {
       "locales": {
-        "en-US": {
-          "summary": "A basic skill made from Alexa Skills Kit template",
+        "de-DE": {
+          "description": "Sample Full Description",
           "examplePhrases": [
-            "Alexa open hello node",
-            "Alexa tell hello node hello",
-            "Alexa ask hello node say hello"
+            "Alexa öffne hallo welt",
+            "hallo",
+            "hilfe"
           ],
-          "name": "hello node",
-          "description": "A basic skill made from Alexa Skills Kit template"
+          "keywords": [],
+          "name": "DoYourThing",
+          "summary": "Sample Short Description"
         }
       },
-      "isAvailableWorldwide": true,
+      "isAvailableWorldwide": false,
       "testingInstructions": "Sample Testing Instructions.",
       "category": "EDUCATION_AND_REFERENCE",
       "distributionCountries": []
