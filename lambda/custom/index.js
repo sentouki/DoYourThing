@@ -131,4 +131,9 @@ exports.handler = Alexa.SkillBuilders.custom()
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
   .addErrorHandlers(
     ErrorHandler)
+  .withTableName("todo_table")
+  .withAutoCreateTable(true)
+  .withDynamoDbClient(
+    new AWS.DynamoDB({ apiVersion: "latest", region: "us-east-1" })
+  )
   .lambda();
