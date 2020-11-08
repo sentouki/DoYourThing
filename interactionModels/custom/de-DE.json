@@ -214,7 +214,9 @@
               "type": "AMAZON.Sport",
               "elicitationRequired": false,
               "confirmationRequired": false,
-              "prompts": {}
+              "prompts": {
+                "elicitation": "Elicit.Slot.001"
+              }
             },
             {
               "name": "todoDate",
@@ -407,6 +409,19 @@
           {
             "type": "PlainText",
             "value": "Um wie viel Uhr?"
+          }
+        ]
+      },
+      {
+        "id" : "Elicit.Slot.001",
+        "variations":[
+          {
+            "type": "PlainText",
+            "value": "Welche Aufgabe?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Was für eine Aufgabe soll es sein?"
           }
         ]
       }
