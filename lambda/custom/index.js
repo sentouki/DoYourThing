@@ -15,19 +15,6 @@ const LaunchRequestHandler = {
         .getResponse();
     }
 };
-const HelloWorldIntentHandler = {
-    canHandle(handlerInput) {
-      return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-        && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
-    },
-    handle(handlerInput) {
-      const speechText = 'Hello World!';
-      return handlerInput.responseBuilder
-        .speak(speechText)
-        //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-        .getResponse();
-    }
-};
 const HelpIntentHandler = {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -102,16 +89,47 @@ const ErrorHandler = {
     }
 };
 
+const CreateToDoIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return(request.type === 'IntentRequest'
+        && request.intent.name === 'CreateToDoIntent');
+  },
+  async handle(handlerInput) {
+
+    const slots = handlerInput.requestEnvelope.request.intent.slots;
+    const data = await handlerInput
+                        .attributesManager
+                        .getPersistentAttributes();
+    data.action = slots.todoAction.value;
+    data.date = slots.todoDate.value;
+    data.time = slots.todoTime.value;
+    data.prio = slots.todoPrio.value;
+    handlerInput.attributesManager.setPersistentAttributes(data);
+    await handlerInput.attributesManager.savePersistentAttributes(data);
+
+    const speechOutput = "gespeichert";
+
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      //.reprompt()
+      .getResponse();
+  },
+};
+
+
+
+
 // This handler acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
 exports.handler = Alexa.SkillBuilders.custom()
   .addRequestHandlers(
     LaunchRequestHandler,
-    HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
+    CreateToDoIntentHandler,
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
   .addErrorHandlers(
     ErrorHandler)
