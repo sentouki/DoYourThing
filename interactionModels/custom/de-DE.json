@@ -212,10 +212,10 @@
             {
               "name": "todoAction",
               "type": "AMAZON.Sport",
-              "elicitationRequired": false,
+              "elicitationRequired": true,
               "confirmationRequired": false,
               "prompts": {
-                "elicitation": "Elicit.Slot.001"
+                "elicitation": "Elicit.Slot.1262394217431.1302270093064"
               }
             },
             {
@@ -413,7 +413,7 @@
         ]
       },
       {
-        "id" : "Elicit.Slot.001",
+        "id" : "Elicit.Slot.1262394217431.1302270093064",
         "variations":[
           {
             "type": "PlainText",
