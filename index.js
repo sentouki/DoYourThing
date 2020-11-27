@@ -23,7 +23,7 @@ const CreateToDoIntentHandler = {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
     const oldData = await handlerInput.attributesManager.getPersistentAttributes();
     const _data = {};   // inner JSON object, contains data from slots
-    var data;           // outer JSON object, containt inner JSON object and unique key
+    var data = {};           // outer JSON object, containt inner JSON object and unique key
     const key = `${slots.todoAction.value}+${slots.todoDate.value}+${slots.todoTime.value}`;
     _data.action = slots.todoAction.value;
     _data.date = slots.todoDate.value;
@@ -52,18 +52,18 @@ const OverviewTodoIntentHandler = {
   },
   async handle(handlerInput) {
     const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+    var count = Object.keys(oldData).length;
+    //console.log(oldData);
     var ToDos = [];
-    for (todo in oldData) {
-      ToDos.push(todo.action);
+    for (var i = 0; i < count; i++) {
+      ToDos.push(Object.values(oldData)[i].action);
     }
-    var speechOutput = "Du hast noch folgende tu dus zu erledigen";
-    for (todo in ToDos) {
-      speechOutput += todo;
-    }
+    console.log(ToDos);
+    var speechOutput = "Du hast noch folgende tu dus zu erledigen ";
+    ToDos.forEach(todo => speechOutput+= ','+todo);
     console.log(speechOutput);
     return handlerInput.responseBuilder
       .speak(speechOutput)
-      .reprompt(speechOutput)
       .getResponse();
   }
 };
@@ -73,10 +73,12 @@ const LaunchRequestHandler = {
       return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
 
-    handle(handlerInput) {
+  async handle(handlerInput) {
       const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+      var count = Object.keys(oldData).length;
       var speechText = 'Willkommen, was kann ich für dich tun?';
-      if (!oldData) 
+      console.log(`DATA counter: ${count}`);
+      if (!count) 
       {
         speechText = 'Willkommen bei tu du. Sag "Alexa, hilfe", um zu erfahren, was ich kann';
       }
