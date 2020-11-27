@@ -2,7 +2,8 @@
 // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk');
-//const AWS = require('aws-sdk');
+const AWS = require('aws-sdk');
+const skillBuilder = Alexa.SkillBuilders.standard();
 
 const CreateToDoIntentHandler = {
   canHandle(handlerInput) {
@@ -11,20 +12,57 @@ const CreateToDoIntentHandler = {
         && request.intent.name === 'CreateToDoIntent');
   },
   async handle(handlerInput) {
-    console.log("works so far");
     const slots = handlerInput.requestEnvelope.request.intent.slots;
     const data = await handlerInput
                         .attributesManager
                         .getPersistentAttributes();
-    console.log("works so far 2");
     data.action = slots.todoAction.value;
     data.date = slots.todoDate.value;
     data.time = slots.todoTime.value;
     data.prio = slots.todoPrio.value;
-    console.log("works so far 3");
     handlerInput.attributesManager.setPersistentAttributes(data);
     await handlerInput.attributesManager.savePersistentAttributes(data);
 
+    const speechOutput = "gespeichert";
+
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .reprompt(speechOutput)
+      .getResponse();
+  }
+};
+
+const Test_CreateToDoIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return(request.type === 'IntentRequest'
+        && request.intent.name === 'CreateToDoIntent');
+  },
+  async handle(handlerInput) {
+    const slots = handlerInput.requestEnvelope.request.intent.slots;
+
+    const oldData = await handlerInput
+                        .attributesManager
+                        .getPersistentAttributes();
+                        
+    console.log(`Old Data: ${oldData.id}`);
+    
+    skillBuilder.with
+
+    const data = {};
+    const id = `${slots.todoAction.value}+${slots.todoDate.value}+${slots.todoTime.value}`;
+    data.action = slots.todoAction.value;
+    data.date = slots.todoDate.value;
+    data.time = slots.todoTime.value;
+    data.prio = slots.todoPrio.value;
+    var gdata = {};
+    gdata[id] = data;
+    gdata = Object.assign({}, gdata, oldData);
+    console.log(gdata);
+    
+    handlerInput.attributesManager.setPersistentAttributes(gdata);
+    await handlerInput.attributesManager.savePersistentAttributes(gdata);
+    
     const speechOutput = "gespeichert";
 
     return handlerInput.responseBuilder
@@ -38,13 +76,16 @@ const LaunchRequestHandler = {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
     },
+
     handle(handlerInput) {
       const speechText = 'Willkommen, was kann ich für dich tun?';
+
       return handlerInput.responseBuilder
         .speak(speechText)
         .reprompt(speechText)
         .getResponse();
     }
+    
 };
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -124,19 +165,16 @@ const IntentReflectorHandler = {
 // This handler acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
-exports.handler = Alexa.SkillBuilders.custom()
+exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
-    CreateToDoIntentHandler,
+    Test_CreateToDoIntentHandler,
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
   .addErrorHandlers(
     ErrorHandler)
-  // .withTableName("durchstich_tbl")
-  // .withAutoCreateTable(true)
-  // .withDynamoDbClient(
-  //   new AWS.DynamoDB({ apiVersion: "latest", region: "us-east-1" })
-  // )
+  .withTableName("tasks")
+  .withAutoCreateTable(true)
   .lambda();
