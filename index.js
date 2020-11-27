@@ -5,6 +5,14 @@ const Alexa = require('ask-sdk');
 const AWS = require('aws-sdk');
 const skillBuilder = Alexa.SkillBuilders.standard();
 
+function setQuestion(handlerInput, questionAsked) {
+  const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+  sessionAttributes.questionAsked = questionAsked;
+  handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+}
+
+
+
 const CreateToDoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -13,17 +21,20 @@ const CreateToDoIntentHandler = {
   },
   async handle(handlerInput) {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
-    const data = await handlerInput
-                        .attributesManager
-                        .getPersistentAttributes();
-    data.action = slots.todoAction.value;
-    data.date = slots.todoDate.value;
-    data.time = slots.todoTime.value;
-    data.prio = slots.todoPrio.value;
+    const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+    const _data = {};   // inner JSON object, contains data from slots
+    var data;           // outer JSON object, containt inner JSON object and unique key
+    const key = `${slots.todoAction.value}+${slots.todoDate.value}+${slots.todoTime.value}`;
+    _data.action = slots.todoAction.value;
+    _data.date = slots.todoDate.value;
+    _data.time = slots.todoTime.value;
+    _data.prio = slots.todoPrio.value || "0";
+    data[key] = _data;
+    data = Object.assign({}, data, oldData);
     handlerInput.attributesManager.setPersistentAttributes(data);
     await handlerInput.attributesManager.savePersistentAttributes(data);
 
-    const speechOutput = "gespeichert";
+    const speechOutput = "Neues tu du wurde erstellt";
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -32,37 +43,24 @@ const CreateToDoIntentHandler = {
   }
 };
 
-const Test_CreateToDoIntentHandler = {
+
+const OverviewTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
     return(request.type === 'IntentRequest'
-        && request.intent.name === 'CreateToDoIntent');
+        && request.intent.name === 'OverviewTodoIntent');
   },
   async handle(handlerInput) {
-    const slots = handlerInput.requestEnvelope.request.intent.slots;
-
-    const oldData = await handlerInput
-                        .attributesManager
-                        .getPersistentAttributes();
-                        
-    console.log(`Old Data: ${oldData.id}`);
-    
-    const data = {};
-    const id = `${slots.todoAction.value}+${slots.todoDate.value}+${slots.todoTime.value}`;
-    data.action = slots.todoAction.value;
-    data.date = slots.todoDate.value;
-    data.time = slots.todoTime.value;
-    data.prio = slots.todoPrio.value;
-    var gdata = {};
-    gdata[id] = data;
-    gdata = Object.assign({}, gdata, oldData);
-    console.log(gdata);
-    
-    handlerInput.attributesManager.setPersistentAttributes(gdata);
-    await handlerInput.attributesManager.savePersistentAttributes(gdata);
-    
-    const speechOutput = "gespeichert";
-
+    const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+    var ToDos = [];
+    for (todo in oldData) {
+      ToDos.push(todo.action);
+    }
+    var speechOutput = "Du hast noch folgende tu dus zu erledigen";
+    for (todo in ToDos) {
+      speechOutput += todo;
+    }
+    console.log(speechOutput);
     return handlerInput.responseBuilder
       .speak(speechOutput)
       .reprompt(speechOutput)
@@ -76,8 +74,12 @@ const LaunchRequestHandler = {
     },
 
     handle(handlerInput) {
-      const speechText = 'Willkommen, was kann ich für dich tun?';
-
+      const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+      var speechText = 'Willkommen, was kann ich für dich tun?';
+      if (!oldData) 
+      {
+        speechText = 'Willkommen bei tu du. Sag "Alexa, hilfe", um zu erfahren, was ich kann';
+      }
       return handlerInput.responseBuilder
         .speak(speechText)
         .reprompt(speechText)
@@ -85,6 +87,31 @@ const LaunchRequestHandler = {
     }
     
 };
+
+const YesIntentHandler = {
+  canHandle(handlerInput) {
+      return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+          && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.YesIntent';
+  },
+  handle(handlerInput) {
+
+  }
+
+};
+
+const NoIntentHandler = {
+  canHandle(handlerInput) {
+      return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+          && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.NoIntent';
+  },
+  handle(handlerInput) {
+  }
+};
+
+
+
+
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -169,7 +196,8 @@ exports.handler = skillBuilder
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
-    Test_CreateToDoIntentHandler,
+    CreateToDoIntentHandler,
+    OverviewTodoIntentHandler,
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
   .addErrorHandlers(
     ErrorHandler)
