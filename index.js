@@ -68,6 +68,32 @@ const OverviewTodoIntentHandler = {
   }
 };
 
+const DeleteTodoIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return(request.type === 'IntentRequest'
+        && request.intent.name === 'DeleteTodoIntent');
+  },
+  async handle(handlerInput) {
+    const slots = handlerInput.requestEnvelope.request.intent.slots;
+    const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+    const key = `${slots.todoAction.value}+${slots.todoDate.value}+${slots.todoTime.value}`;
+    var speechOutput;
+    if (oldData[key]) {
+      delete oldData[key];
+      speechOutput = "tu du wurde gelöscht";
+      handlerInput.attributesManager.setPersistentAttributes(oldData);
+      await handlerInput.attributesManager.savePersistentAttributes(oldData);
+    }
+    else {
+      speechOutput = "tu du nicht gefunden";
+    }
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .getResponse();
+  }
+};
+
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
@@ -199,6 +225,7 @@ exports.handler = skillBuilder
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
     CreateToDoIntentHandler,
+    DeleteTodoIntentHandler,
     OverviewTodoIntentHandler,
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
   .addErrorHandlers(
