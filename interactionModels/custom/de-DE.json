@@ -1,0 +1,477 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "tu dein ding",
+            "modelConfiguration": {
+                "fallbackIntentSensitivity": {
+                    "level": "LOW"
+                }
+            },
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "Hilfe",
+                        "Was kann ich tun",
+                        "Wie funktioniert das"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "CreateToDoIntent",
+                    "slots": [
+                        {
+                            "name": "todoAction",
+                            "type": "AMAZON.Sport",
+                            "samples": [
+                                "zum {todoAction}",
+                                "fürs {todoAction}",
+                                "{todoAction}",
+                                "{todoAction} {todoAction}",
+                                "{todoAction} {todoAction} {todoAction}",
+                                "ich möchte mich zum {todoAction} treffen",
+                                "ich möchte zum {todoAction} gehen",
+                                "ich möchte mich fürs {todoAction} treffen",
+                                "ich möchte fürs {todoAction} gehen"
+                            ]
+                        },
+                        {
+                            "name": "todoDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "am {todoDate}",
+                                "für den {todoDate}",
+                                "{todoDate}",
+                                "Ich möchte mich am {todoDate} treffen",
+                                "wie wäre es mit dem {todoDate}"
+                            ]
+                        },
+                        {
+                            "name": "todoTime",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "wie wäre es mit {todoTime}",
+                                "um {todoTime}",
+                                "gegen {todoTime}",
+                                "circa {todoTime}",
+                                "etwa {todoTime}",
+                                "{todoTime}"
+                            ]
+                        },
+                        {
+                            "name": "todoPrio",
+                            "type": "todoPrio",
+                            "samples": [
+                                "{todoPrio}",
+                                "Priorität {todoPrio}",
+                                "setze Priorität {todoPrio}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Erstelle bitte neues tu du",
+                        "Erstelle bitte neues Ereignis",
+                        "Erstelle bitte neues Todo",
+                        "Erstelle bitte neue Aufgabe",
+                        "Erstelle neue Aktivität",
+                        "Neue Aufgabe",
+                        "Neues Todo",
+                        "Neue Aktivität",
+                        "{todoDate}",
+                        "{todoAction}"
+                    ]
+                },
+                {
+                    "name": "DeleteTodoIntent",
+                    "slots": [
+                        {
+                            "name": "todoAction",
+                            "type": "AMAZON.Sport",
+                            "samples": [
+                                "{todoAction}",
+                                "die {todoAction}",
+                                "den {todoAction}",
+                                "das {todoAction}"
+                            ]
+                        },
+                        {
+                            "name": "todoDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "{todoDate}",
+                                "am {todoDate}"
+                            ]
+                        },
+                        {
+                            "name": "todoTime",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "um {todoTime}",
+                                "{todoTime}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Entferne eine Aktivität",
+                        "Entferne eine Aufgabe",
+                        "Entferne ein tu du",
+                        "Entferne ein Todo",
+                        "Lösche eine Aktivität",
+                        "Lösche eine Aufgabe",
+                        "Lösche ein tu du"
+                    ]
+                },
+                {
+                    "name": "EditTodoIntent",
+                    "slots": [
+                        {
+                            "name": "TodoAction",
+                            "type": "AMAZON.Sport",
+                            "samples": [
+                                "{TodoAction}"
+                            ]
+                        },
+                        {
+                            "name": "TodoDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "am {TodoDate} um {TodoTime}",
+                                "{TodoDate}"
+                            ]
+                        },
+                        {
+                            "name": "TodoTime",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "{TodoTime}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Bearbeite ein tu du",
+                        "Ändere eine Aktivität",
+                        "Ändere eine Aufgabe",
+                        "Ich möchte eine Aufgabe bearbeiten",
+                        "Ich möchte eine Aktivität bearbeiten",
+                        "Ich möchte eine Aktivität ändern",
+                        "Ich möchte ein tu du ändern",
+                        "Ich möchte eine Aufgabe ändern",
+                        "Bearbeite eine Aufgabe"
+                    ]
+                },
+                {
+                    "name": "OverviewTodoIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Aufgaben sind noch offen",
+                        "Was muss noch erledigt werden",
+                        "Welche tu dus habe ich zu erledigen",
+                        "Welche Aufgaben habe ich zu erledigen",
+                        "Was für Aufgaben habe ich zu erledigen",
+                        "Welche tu dus stehen bevor",
+                        "Welche Aktivitäten stehen bevor",
+                        "Welche Aufgaben stehen bevor"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "todoPrio",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "C"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "B"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "A"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CreateToDoIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "todoAction",
+                            "type": "AMAZON.Sport",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1262394217431.1302270093064"
+                            }
+                        },
+                        {
+                            "name": "todoDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.643213036640.1158875479827"
+                            }
+                        },
+                        {
+                            "name": "todoTime",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1260815402263.121518982438"
+                            }
+                        },
+                        {
+                            "name": "todoPrio",
+                            "type": "todoPrio",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "DeleteTodoIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "todoAction",
+                            "type": "AMAZON.Sport",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1398172149767.999475150211"
+                            }
+                        },
+                        {
+                            "name": "todoDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.528212377058.1026367604426"
+                            }
+                        },
+                        {
+                            "name": "todoTime",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.528212377058.51632087877"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "EditTodoIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "TodoAction",
+                            "type": "AMAZON.Sport",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1571269691305.1505452063253"
+                            }
+                        },
+                        {
+                            "name": "TodoDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1571269691305.951931927309"
+                            }
+                        },
+                        {
+                            "name": "TodoTime",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1571269691305.765067465511"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.643213036640.1158875479827",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Wann ist die Aufgabe fällig"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Wann ist das tu du fällig"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Ergänze bitte das Datum"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "An welchem Datum"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Nenne bitte ein Datum"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1260815402263.121518982438",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Um wieviel Uhr muss deine Aufgabe erledigt sein?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Wann?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Zu welcher Uhrzeit?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Um wieviel Uhr?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1398172149767.999475150211",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welches tu du soll gelöscht werden?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aufgabe soll ich löschen?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aktivität soll ich löschen?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1571269691305.1505452063253",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welches tu du soll bearbeitet werden?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aufgabe soll ich ändern?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aktivität soll ich ändern?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1571269691305.951931927309",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "An welchem Tag?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welches Datum?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1571269691305.765067465511",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Uhrzeit?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Um wie viel Uhr?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1262394217431.1302270093064",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aufgabe?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Was für eine Aufgabe soll es sein?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.528212377058.1026367604426",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Datum?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.528212377058.51632087877",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Wann?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Uhrzeit?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Wie viel Uhr?"
+                    }
+                ]
+            }
+        ]
+    }
+}
