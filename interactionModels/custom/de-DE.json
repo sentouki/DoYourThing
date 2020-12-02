@@ -44,52 +44,78 @@
                             "name": "todoAction",
                             "type": "ACTIVITY",
                             "samples": [
+                                "{todoAction}",
                                 "zum {todoAction}",
                                 "fürs {todoAction}",
-                                "{todoAction}",
-                                "{todoAction} {todoAction}",
-                                "{todoAction} {todoAction} {todoAction}",
+                                "für das {todoAction}",
+                                "für ein {todoAction}",
                                 "ich möchte mich zum {todoAction} treffen",
+                                "ich möchte mich für ein {todoAction} treffen",
+                                "ich möchte mich für das {todoAction} treffen",
                                 "ich möchte zum {todoAction} gehen",
                                 "ich möchte mich fürs {todoAction} treffen",
-                                "ich möchte fürs {todoAction} gehen"
+                                "Erstelle {todoAction}",
+                                "Erstelle Termin {todoAction}",
+                                "Erstelle Aufgabe {todoAction}",
+                                "Erstelle tu du {todoAction}",
+                                "Erstelle Aktivität {todoAction}",
+                                "Lege {todoAction} an",
+                                "Lege Termin {todoAction} an",
+                                "Lege Aktivität {todoAction} an",
+                                "Lege Aufgabe {todoAction} an",
+                                "Lege tu du {todoAction} an"
                             ]
                         },
                         {
                             "name": "todoDate",
                             "type": "AMAZON.DATE",
                             "samples": [
+                                "{todoDate}",
                                 "am {todoDate}",
                                 "für den {todoDate}",
-                                "{todoDate}",
-                                "Ich möchte mich am {todoDate} treffen",
-                                "wie wäre es mit dem {todoDate}"
+                                "ich möchte mich am {todoDate} treffen",
+                                "wie wäre es mit dem {todoDate}",
+                                "Erstelle To Do am {todoDate}",
+                                "Erstelle neue Aktivität am {todoDate}",
+                                "Erstelle Termin am {todoDate}",
+                                "Erstelle Aufgabe am {todoDate}"
                             ]
                         },
                         {
                             "name": "todoTime",
                             "type": "AMAZON.TIME",
                             "samples": [
+                                "{todoTime}",
                                 "wie wäre es mit {todoTime}",
                                 "um {todoTime}",
                                 "gegen {todoTime}",
                                 "circa {todoTime}",
-                                "etwa {todoTime}",
-                                "{todoTime}"
+                                "etwa {todoTime}"
                             ]
                         }
                     ],
                     "samples": [
-                        "Erstelle bitte neues tu du",
-                        "Erstelle bitte neues Ereignis",
-                        "Erstelle bitte neues Todo",
-                        "Erstelle bitte neue Aufgabe",
-                        "Erstelle neue Aktivität",
-                        "Neue Aufgabe",
-                        "Neues Todo",
-                        "Neue Aktivität",
+                        "{todoAction}",
                         "{todoDate}",
-                        "{todoAction}"
+                        "{todoAction} am {todoDate}",
+                        "Setze neue Aktivität auf meine To Do Liste",
+                        "Setzte neue Aufgabe auf meine To Do Liste",
+                        "Setze neuen Termin auf meine To Do Liste",
+                        "Lege neuen Termin an",
+                        "Lege Termin an",
+                        "Erstelle Termin",
+                        "Erstelle neuen Termin",
+                        "Lege Aktivität an",
+                        "Lege neue Aktivität an",
+                        "Lege neues To Do an",
+                        "Lege To Do an",
+                        "Lege neue Aufgabe an",
+                        "Lege Aufgabe an",
+                        "Erstelle neues To Do",
+                        "Erstelle To Do",
+                        "Erstelle Aufgabe",
+                        "Erstelle neue Aufgabe",
+                        "Erstelle neue Aktivität"
                     ]
                 },
                 {
