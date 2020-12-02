@@ -17,7 +17,12 @@
                     "samples": [
                         "Hilfe",
                         "Was kann ich tun",
-                        "Wie funktioniert das"
+                        "Wie funktioniert das",
+                        "Hilf mir",
+                        "Ich brauche Hilfe",
+                        "Das funktioniert nicht",
+                        "Ich komme nicht klar",
+                        "Ich komme damit nicht klar"
                     ]
                 },
                 {
@@ -37,7 +42,7 @@
                     "slots": [
                         {
                             "name": "todoAction",
-                            "type": "AMAZON.Sport",
+                            "type": "ACTIVITY",
                             "samples": [
                                 "zum {todoAction}",
                                 "fürs {todoAction}",
@@ -72,15 +77,6 @@
                                 "etwa {todoTime}",
                                 "{todoTime}"
                             ]
-                        },
-                        {
-                            "name": "todoPrio",
-                            "type": "todoPrio",
-                            "samples": [
-                                "{todoPrio}",
-                                "Priorität {todoPrio}",
-                                "setze Priorität {todoPrio}"
-                            ]
                         }
                     ],
                     "samples": [
@@ -101,7 +97,7 @@
                     "slots": [
                         {
                             "name": "todoAction",
-                            "type": "AMAZON.Sport",
+                            "type": "ACTIVITY",
                             "samples": [
                                 "{todoAction}",
                                 "die {todoAction}",
@@ -141,7 +137,7 @@
                     "slots": [
                         {
                             "name": "TodoAction",
-                            "type": "AMAZON.Sport",
+                            "type": "ACTIVITY",
                             "samples": [
                                 "{TodoAction}"
                             ]
@@ -191,21 +187,181 @@
             ],
             "types": [
                 {
-                    "name": "todoPrio",
+                    "name": "ACTIVITY",
                     "values": [
                         {
                             "name": {
-                                "value": "C"
+                                "value": "Ferien"
                             }
                         },
                         {
                             "name": {
-                                "value": "B"
+                                "value": "Urlaub"
                             }
                         },
                         {
                             "name": {
-                                "value": "A"
+                                "value": "Schwimmen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Baden"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Schwimmbad"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Spazieren"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Wandern"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Klettern"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Essen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Sport"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Einkaufen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Shoppen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Besuch"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Arzt"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Arztbesuch"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Arzttermin"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Putzen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Aufräumen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Kochen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Familie"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Hochzeit"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Beerdigung"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Taufe"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Konfirmation"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Firmung"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Treffen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Meeting"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Besuch"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Freunde"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Werkstatt"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Klausur"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Prüfung"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Vorstellungsgespräch"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Firma"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Sonderfall"
                             }
                         }
                     ]
@@ -221,7 +377,7 @@
                     "slots": [
                         {
                             "name": "todoAction",
-                            "type": "AMAZON.Sport",
+                            "type": "ACTIVITY",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
@@ -245,13 +401,6 @@
                             "prompts": {
                                 "elicitation": "Elicit.Slot.1260815402263.121518982438"
                             }
-                        },
-                        {
-                            "name": "todoPrio",
-                            "type": "todoPrio",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
                         }
                     ]
                 },
@@ -262,7 +411,7 @@
                     "slots": [
                         {
                             "name": "todoAction",
-                            "type": "AMAZON.Sport",
+                            "type": "ACTIVITY",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
@@ -296,7 +445,7 @@
                     "slots": [
                         {
                             "name": "TodoAction",
-                            "type": "AMAZON.Sport",
+                            "type": "ACTIVITY",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
