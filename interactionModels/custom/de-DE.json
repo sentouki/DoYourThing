@@ -503,15 +503,40 @@
         },
         "prompts": [
             {
+                "id": "Elicit.Slot.1262394217431.1302270093064",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aufgabe soll ich eintragen?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Was möchtest du erledigen?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Nenne bitte deine Aufgabe"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Nenne bitte dein tu du"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Was hast du dir vorgenommen?"
+                    }
+                ]
+            },
+            {
                 "id": "Elicit.Slot.643213036640.1158875479827",
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "Wann ist die Aufgabe fällig"
+                        "value": "Wann ist die Aufgabe fällig?"
                     },
                     {
                         "type": "PlainText",
-                        "value": "Wann ist das tu du fällig"
+                        "value": "Wann ist das tu du fällig?"
                     },
                     {
                         "type": "PlainText",
@@ -519,11 +544,23 @@
                     },
                     {
                         "type": "PlainText",
-                        "value": "An welchem Datum"
+                        "value": "Nenne bitte ein Datum"
                     },
                     {
                         "type": "PlainText",
-                        "value": "Nenne bitte ein Datum"
+                        "value": "Füge bitte ein Datum hinzu"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Wann ist Stichtag?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Wann muss die Aufgabe erledigt werden?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welches Datum soll in notiern?"
                     }
                 ]
             },
@@ -536,7 +573,7 @@
                     },
                     {
                         "type": "PlainText",
-                        "value": "Wann?"
+                        "value": "Welche Uhrzeit soll ich eintragen?"
                     },
                     {
                         "type": "PlainText",
@@ -605,19 +642,6 @@
                     {
                         "type": "PlainText",
                         "value": "Um wie viel Uhr?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.1262394217431.1302270093064",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Welche Aufgabe?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "Was für eine Aufgabe soll es sein?"
                     }
                 ]
             },
