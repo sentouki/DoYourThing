@@ -125,10 +125,24 @@
                             "name": "todoAction",
                             "type": "ACTIVITY",
                             "samples": [
-                                "{todoAction}",
-                                "die {todoAction}",
-                                "den {todoAction}",
-                                "das {todoAction}"
+                                "Entferne den Termin {todoAction}",
+                                "Lösche den Termin {todoAction}",
+                                "Streiche den Termin {todoAction}",
+                                "Entferne {todoAction}",
+                                "Lösche {todoAction}",
+                                "Streiche {todoAction}",
+                                "Entferne {todoAction} von der To Do Liste",
+                                "Lösche {todoAction} von der To Do Liste",
+                                "Streiche {todoAction} von der To Do Liste",
+                                "Entferne {todoAction} von meiner To Do Liste",
+                                "Lösche {todoAction} von meiner To Do Liste",
+                                "Streiche {todoAction} von meiner To Do Liste",
+                                "Entferne {todoAction} von meiner Liste",
+                                "Lösche {todoAction} von meiner Liste",
+                                "Streiche {todoAction} von meiner Liste",
+                                "Entferne {todoAction} von der Liste",
+                                "Lösche {todoAction} von der Liste",
+                                "Streiche {todoAction} von der Liste"
                             ]
                         },
                         {
@@ -136,13 +150,17 @@
                             "type": "AMAZON.DATE",
                             "samples": [
                                 "{todoDate}",
-                                "am {todoDate}"
+                                "am {todoDate}",
+                                "für den {todoDate}"
                             ]
                         },
                         {
                             "name": "todoTime",
                             "type": "AMAZON.TIME",
                             "samples": [
+                                "etwa {todoTime}",
+                                "circa {todoTime}",
+                                "gegen {todoTime}",
                                 "um {todoTime}",
                                 "{todoTime}"
                             ]
@@ -151,11 +169,17 @@
                     "samples": [
                         "Entferne eine Aktivität",
                         "Entferne eine Aufgabe",
-                        "Entferne ein tu du",
-                        "Entferne ein Todo",
+                        "Entferne ein To Do",
+                        "Entferne einen Termin",
                         "Lösche eine Aktivität",
                         "Lösche eine Aufgabe",
-                        "Lösche ein tu du"
+                        "Lösche einen Termin",
+                        "Lösche ein To Do",
+                        "Streiche eine Aktivität",
+                        "Streiche eine Aufgabe",
+                        "Streiche ein To Do",
+                        "Streiche einen Termin",
+                        "{todoAction} {todoDate}"
                     ]
                 },
                 {
@@ -650,7 +674,15 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "Datum?"
+                        "value": "Nenne bitte das Datum der Aufgabe."
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "An welchem Datum hätte das tu du stattgefunden?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "An welchem Datum ist die zu löschende Aktivität?"
                     }
                 ]
             },
@@ -659,15 +691,15 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "Wann?"
+                        "value": "Zu welcher Uhrzeit hätte deine Aufgabe stattgefunden?"
                     },
                     {
                         "type": "PlainText",
-                        "value": "Uhrzeit?"
+                        "value": "Nenne mir bitte die Uhrzeit."
                     },
                     {
                         "type": "PlainText",
-                        "value": "Wie viel Uhr?"
+                        "value": "Um wie viel Uhr findet das tu du statt?"
                     }
                 ]
             }
