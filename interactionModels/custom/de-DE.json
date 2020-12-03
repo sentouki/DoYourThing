@@ -186,38 +186,75 @@
                     "name": "EditTodoIntent",
                     "slots": [
                         {
-                            "name": "TodoAction",
+                            "name": "editAction",
                             "type": "ACTIVITY",
                             "samples": [
-                                "{TodoAction}"
+                                "{editAction}",
+                                "der {editAction}",
+                                "die {editAction}",
+                                "das {editAction}"
                             ]
                         },
                         {
-                            "name": "TodoDate",
+                            "name": "editDate",
                             "type": "AMAZON.DATE",
                             "samples": [
-                                "am {TodoDate} um {TodoTime}",
-                                "{TodoDate}"
+                                "{editDate}",
+                                "am {editTime}"
                             ]
                         },
                         {
-                            "name": "TodoTime",
+                            "name": "editTime",
                             "type": "AMAZON.TIME",
                             "samples": [
-                                "{TodoTime}"
+                                "{editTime}",
+                                "um {editTime}"
                             ]
                         }
                     ],
                     "samples": [
+                        "Bearbeite eine Aufgabe",
                         "Bearbeite ein tu du",
+                        "Bearbeite ein To Do",
+                        "Verschiebe eine Aufgabe",
+                        "Verschiebe ein tu du",
+                        "Verschiebe ein To Do",
+                        "Verlege eine Aufgabe",
+                        "Verlege ein tu du",
+                        "Verlege ein To Do",
+                        "Überarbeite eine Aufgabe",
+                        "Überarbeite ein tu du",
+                        "Überarbeite ein To Do",
                         "Ändere eine Aktivität",
                         "Ändere eine Aufgabe",
+                        "Ändere ein To Do",
                         "Ich möchte eine Aufgabe bearbeiten",
                         "Ich möchte eine Aktivität bearbeiten",
+                        "Ich möchte ein To Do bearbeiten",
+                        "Ich möchte eine Aufgabe verschieben",
+                        "Ich möchte eine Aktivität verschieben",
+                        "Ich möchte ein To Do verschieben",
+                        "Ich möchte eine Aufgabe verlegen",
+                        "Ich möchte eine Aktivität verlegen",
+                        "Ich möchte ein To Do verlegen",
+                        "Ich möchte eine Aufgabe überarbeiten",
+                        "Ich möchte eine Aktivität überarbeiten",
+                        "Ich möchte ein To Do überarbeiten",
                         "Ich möchte eine Aktivität ändern",
                         "Ich möchte ein tu du ändern",
                         "Ich möchte eine Aufgabe ändern",
-                        "Bearbeite eine Aufgabe"
+                        "Verschiebe {editAction}",
+                        "Ändere {editAction}",
+                        "Bearbeite {editAction}",
+                        "Verlege {editAction}",
+                        "Verschiebe {editAction} am {editDate}",
+                        "Ändere {editAction} am {editDate}",
+                        "Bearbeite {editAction} am {editDate}",
+                        "Verlege {editAction} am {editDate}",
+                        "Bearbeite {editAction} am {editDate}",
+                        "Ändere {editAction} am {editDate}",
+                        "Verlega {editAction} am {editDate}",
+                        "Verschiebe {editAction} am {editDate}"
                     ]
                 },
                 {
@@ -534,7 +571,7 @@
                     "prompts": {},
                     "slots": [
                         {
-                            "name": "TodoAction",
+                            "name": "editAction",
                             "type": "ACTIVITY",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
@@ -543,7 +580,7 @@
                             }
                         },
                         {
-                            "name": "TodoDate",
+                            "name": "editDate",
                             "type": "AMAZON.DATE",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
@@ -552,7 +589,7 @@
                             }
                         },
                         {
-                            "name": "TodoTime",
+                            "name": "editTime",
                             "type": "AMAZON.TIME",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
@@ -687,6 +724,14 @@
                 "variations": [
                     {
                         "type": "PlainText",
+                        "value": "Welches tu du soll geändert werden"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aufgabe möchtest du bearbeiten?"
+                    },
+                    {
+                        "type": "PlainText",
                         "value": "Welches tu du soll bearbeitet werden?"
                     },
                     {
@@ -704,11 +749,15 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "An welchem Tag?"
+                        "value": "Was ist das ursprüngliche Datum?"
                     },
                     {
                         "type": "PlainText",
-                        "value": "Welches Datum?"
+                        "value": "An welchem Tag findet das tu du Ursprünglich statt?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "An welchem Tag findet die zu ändernde Aktivität statt?"
                     }
                 ]
             },
@@ -717,11 +766,15 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "Welche Uhrzeit?"
+                        "value": "Was ist die ursprüngliche Uhrzeit"
                     },
                     {
                         "type": "PlainText",
-                        "value": "Um wie viel Uhr?"
+                        "value": "Zu welcher Uhrzeit findet die Aktivität ursprünglich statt?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Nenne bitte die Uhrzeit"
                     }
                 ]
             },
