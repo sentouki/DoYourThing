@@ -122,47 +122,47 @@
                     "name": "DeleteTodoIntent",
                     "slots": [
                         {
-                            "name": "todoAction",
+                            "name": "deleteAction",
                             "type": "ACTIVITY",
                             "samples": [
-                                "Entferne den Termin {todoAction}",
-                                "Lösche den Termin {todoAction}",
-                                "Streiche den Termin {todoAction}",
-                                "Entferne {todoAction}",
-                                "Lösche {todoAction}",
-                                "Streiche {todoAction}",
-                                "Entferne {todoAction} von der To Do Liste",
-                                "Lösche {todoAction} von der To Do Liste",
-                                "Streiche {todoAction} von der To Do Liste",
-                                "Entferne {todoAction} von meiner To Do Liste",
-                                "Lösche {todoAction} von meiner To Do Liste",
-                                "Streiche {todoAction} von meiner To Do Liste",
-                                "Entferne {todoAction} von meiner Liste",
-                                "Lösche {todoAction} von meiner Liste",
-                                "Streiche {todoAction} von meiner Liste",
-                                "Entferne {todoAction} von der Liste",
-                                "Lösche {todoAction} von der Liste",
-                                "Streiche {todoAction} von der Liste"
+                                "Entferne den Termin {deleteAction}",
+                                "Lösche den Termin {deleteAction}",
+                                "Streiche den Termin {deleteAction}",
+                                "Entferne {deleteAction}",
+                                "Lösche {deleteAction}",
+                                "Streiche {deleteAction}",
+                                "Entferne {deleteAction} von der To Do Liste",
+                                "Lösche {deleteAction} von der To Do Liste",
+                                "Streiche {deleteAction} von der To Do Liste",
+                                "Entferne {deleteAction} von meiner To Do Liste",
+                                "Lösche {deleteAction} von meiner To Do Liste",
+                                "Streiche {deleteAction} von meiner To Do Liste",
+                                "Entferne {deleteAction} von meiner Liste",
+                                "Lösche {deleteAction} von meiner Liste",
+                                "Streiche {deleteAction} von meiner Liste",
+                                "Entferne {deleteAction} von der Liste",
+                                "Lösche {deleteAction} von der Liste",
+                                "Streiche {deleteAction} von der Liste"
                             ]
                         },
                         {
-                            "name": "todoDate",
+                            "name": "deleteDate",
                             "type": "AMAZON.DATE",
                             "samples": [
-                                "{todoDate}",
-                                "am {todoDate}",
-                                "für den {todoDate}"
+                                "{deleteDate}",
+                                "am {deleteDate}",
+                                "für den {deleteDate}"
                             ]
                         },
                         {
-                            "name": "todoTime",
+                            "name": "deleteTime",
                             "type": "AMAZON.TIME",
                             "samples": [
-                                "etwa {todoTime}",
-                                "circa {todoTime}",
-                                "gegen {todoTime}",
-                                "um {todoTime}",
-                                "{todoTime}"
+                                "etwa {deleteTime}",
+                                "circa {deleteTime}",
+                                "gegen {deleteTime}",
+                                "um {deleteTime}",
+                                "{deleteTime}"
                             ]
                         }
                     ],
@@ -179,7 +179,7 @@
                         "Streiche eine Aufgabe",
                         "Streiche ein To Do",
                         "Streiche einen Termin",
-                        "{todoAction} {todoDate}"
+                        "{deleteAction} {deleteDate}"
                     ]
                 },
                 {
@@ -218,6 +218,40 @@
                         "Ich möchte ein tu du ändern",
                         "Ich möchte eine Aufgabe ändern",
                         "Bearbeite eine Aufgabe"
+                    ]
+                },
+                {
+                    "name": "TodoToDateIntent",
+                    "slots": [
+                        {
+                            "name": "toDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "{toDate}",
+                                "bis {toDate}",
+                                "bis zum {toDate}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Welche Aufgaben {toDate}",
+                        "Welche Aufgaben habe ich {toDate}",
+                        "Welche Aktivitäten {toDate}",
+                        "Welche Aktivitäten habe ich {toDate}",
+                        "Welche tu dus {toDate}",
+                        "Welche tu dus habe ich {toDate}",
+                        "Was für Aufgaben {toDate}",
+                        "Was für Aufgaben habe ich {toDate}",
+                        "Was für Aktivitäten {toDate}",
+                        "Was für Aktivitäten habe ich {toDate}",
+                        "Was für tu dus {toDate}",
+                        "Was für tu dus habe ich {toDate}",
+                        "Zeig mir meine Aufgaben {toDate}",
+                        "Zeig mir meine Aktivitäten {toDate}",
+                        "Zeig mir meine tu dus {toDate}",
+                        "Nenne mir meine Aufgaben {toDate}",
+                        "Nenne mir meine Aktivitäten {toDate}",
+                        "Nenne mir meine tu dus {toDate}"
                     ]
                 },
                 {
@@ -521,6 +555,22 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "TodoToDateIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "toDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.80987199796.1101945224898"
+                            }
+                        }
+                    ]
                 }
             ],
             "delegationStrategy": "ALWAYS"
@@ -700,6 +750,23 @@
                     {
                         "type": "PlainText",
                         "value": "Um wie viel Uhr findet das tu du statt?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.80987199796.1101945224898",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Bis zu welchem Zeitpunkt willst du einen Überblick haben?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Bis zu welchem Datum möchtest du deine tu dus wissen?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Bis zu welchem Datum soll ich dir deine tu dus ausgeben?"
                     }
                 ]
             }
