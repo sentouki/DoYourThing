@@ -258,8 +258,14 @@
                     "name": "OverviewTodoIntent",
                     "slots": [],
                     "samples": [
+                        "Was ist noch offen",
                         "Welche Aufgaben sind noch offen",
+                        "Welche Aktivitäten sind noch offen",
+                        "Welche tu dus sind noch offen",
                         "Was muss noch erledigt werden",
+                        "Welche Aufgaben müssen noch erledigt werden",
+                        "Welche Aktivitäten müssen noch erledigt werden",
+                        "Welche tu dus müssen noch erledigt werden",
                         "Welche tu dus habe ich zu erledigen",
                         "Welche Aufgaben habe ich zu erledigen",
                         "Was für Aufgaben habe ich zu erledigen",
@@ -494,7 +500,7 @@
                     "prompts": {},
                     "slots": [
                         {
-                            "name": "todoAction",
+                            "name": "deleteAction",
                             "type": "ACTIVITY",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
@@ -503,7 +509,7 @@
                             }
                         },
                         {
-                            "name": "todoDate",
+                            "name": "deleteDate",
                             "type": "AMAZON.DATE",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
@@ -512,7 +518,7 @@
                             }
                         },
                         {
-                            "name": "todoTime",
+                            "name": "deleteTime",
                             "type": "AMAZON.TIME",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
