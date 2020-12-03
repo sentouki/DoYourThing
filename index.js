@@ -68,6 +68,34 @@ const OverviewTodoIntentHandler = {
   }
 };
 
+const TodoToDateIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return(request.type === 'IntentRequest'
+        && request.intent.name === 'TodoToDateIntent');
+  },
+  async handle(handlerInput)  {
+    const slots = handlerInput.requestEnvelope.request.intent.slots;
+    const toDate = slots.toDate.value;
+    const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+
+    var count = Object.keys(oldData).length;
+    var ToDos = [];
+    for (var i = 0; i < count; i++) {
+      if(Object.values(oldData)[i].date <= toDate)  {
+        ToDos.push(Object.values(oldData)[i].action);
+      }
+    }
+
+    var speechOutput = "Du hast noch folgende tu dus zu erledigen ";
+    ToDos.forEach(todo => speechOutput+= ','+todo);
+    console.log(speechOutput);
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .getResponse();
+  }
+};
+
 const DeleteTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -227,6 +255,7 @@ exports.handler = skillBuilder
     CreateToDoIntentHandler,
     DeleteTodoIntentHandler,
     OverviewTodoIntentHandler,
+    TodoToDateIntentHandler,
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
   .addErrorHandlers(
     ErrorHandler)
