@@ -12,7 +12,6 @@ function setQuestion(handlerInput, questionAsked) {
 }
 
 
-
 const CreateToDoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -26,9 +25,9 @@ const CreateToDoIntentHandler = {
     var data = {};           // outer JSON object, containt inner JSON object and unique key
     const key = `${slots.todoAction.value}+${slots.todoDate.value}+${slots.todoTime.value}`;
     _data.action = slots.todoAction.value;
-    _data.date = slots.todoDate.value;
+    _data.date = slots.todoDate.value;  // TODO: check if date is complete (check for XX-XX)
     _data.time = slots.todoTime.value;
-    _data.prio = slots.todoPrio.value || "0";
+    //_data.prio = slots.todoPrio.value || "0";
     data[key] = _data;
     data = Object.assign({}, data, oldData);
     handlerInput.attributesManager.setPersistentAttributes(data);
@@ -77,16 +76,21 @@ const TodoToDateIntentHandler = {
   async handle(handlerInput)  {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
     const toDate = Date.parse(slots.toDate.value);
+    const today =  new Date();
+    console.log(`toDate ${toDate}`)
     const oldData = await handlerInput.attributesManager.getPersistentAttributes();
     var count = Object.keys(oldData).length;
     var ToDos = [];
     for (var i = 0; i < count; i++) {
-      if(Date.parse(Object.values(oldData)[i].date) <= toDate)  {
+      if(Date.parse(Object.values(oldData)[i].date) <= toDate && Date.parse(Object.values(oldData)[i].date) >= today)  {
+        console.log(`OldDate: ${Date.parse((Object.values(oldData)[i].date))}`)
         ToDos.push(Object.values(oldData)[i].action);
       }
     }
-
-    var speechOutput = "Du hast noch folgende tu dus zu erledigen ";
+    if (ToDos.length != 0) 
+      var speechOutput = "Du hast noch folgende tu dus zu erledigen ";
+    else 
+      var speechOutput = "du hast keine tu dus zu erledigen";
     ToDos.forEach(todo => speechOutput+= ', '+todo);
     console.log(speechOutput);
     return handlerInput.responseBuilder
@@ -162,10 +166,6 @@ const NoIntentHandler = {
   handle(handlerInput) {
   }
 };
-
-
-
-
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
