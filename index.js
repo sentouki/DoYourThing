@@ -3,12 +3,17 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk');
 const AWS = require('aws-sdk');
+const speechOut = require('./interactionModels/speechOutVariations.json')
 const skillBuilder = Alexa.SkillBuilders.standard();
 
 function setQuestion(handlerInput, questionAsked) {
   const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
   sessionAttributes.questionAsked = questionAsked;
   handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+}
+
+function selectRandom(array) {
+  array[Math.floor(Math.random()*array.length)];
 }
 
 
@@ -33,7 +38,7 @@ const CreateToDoIntentHandler = {
     handlerInput.attributesManager.setPersistentAttributes(data);
     await handlerInput.attributesManager.savePersistentAttributes(data);
 
-    const speechOutput = "Neues tu du wurde erstellt";
+    const speechOutput = selectRandom(speechOut["CreateToDoIntent"]);
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -112,18 +117,47 @@ const DeleteTodoIntentHandler = {
     var speechOutput;
     if (oldData[key]) {
       delete oldData[key];
-      speechOutput = "tu du wurde gelöscht";
+      speechOutput = selectRandom(speechOut["DeleteTodoIntent"]["success"]);
       handlerInput.attributesManager.setPersistentAttributes(oldData);
       await handlerInput.attributesManager.savePersistentAttributes(oldData);
     }
     else {
-      speechOutput = "tu du nicht gefunden";
+      speechOutput = selectRandom(speechOut["DeleteTodoIntent"]["notfound"]);
     }
     return handlerInput.responseBuilder
       .speak(speechOutput)
       .getResponse();
   }
 };
+
+const EditTodoRequestHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return(request.type === 'IntentRequest'
+        && request.intent.name === 'EditTodoRequest');
+  },
+  async handle(handlerInput) {
+    const slots = handlerInput.requestEnvelope.request.intent.slots;
+    const key = `${slots.editAction.value}+${slots.editDate.value}+${slots.editTime.value}`;
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+    sessionAttributes.TodoKey = key;
+    handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+    return EditTodoIntentHandler.handle(handlerInput);
+  }
+}
+
+const EditTodoIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return(request.type === 'IntentRequest'
+        && request.intent.name === 'EditTodoIntent');
+  },
+  async handle(handlerInput) {
+    const slots = handlerInput.requestEnvelope.request.intent.slots;
+    const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+    
+  }
+}
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -255,6 +289,8 @@ exports.handler = skillBuilder
     DeleteTodoIntentHandler,
     OverviewTodoIntentHandler,
     TodoToDateIntentHandler,
+    EditTodoRequestHandler,
+    EditTodoIntentHandler,
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
   .addErrorHandlers(
     ErrorHandler)

@@ -1,0 +1,15 @@
+{
+    "LaunchRequest":[],
+    "CreateToDoIntent": [
+        "Neues tu du wurde erstellt"
+        ],
+    "DeleteTodoIntent": {
+        "success":[
+            "tu du wurde gelöscht"
+            ],
+        "notfound":[
+            "tu du nicht gefunden"
+            ]
+    },
+    "OverviewTodoIntent":[]
+}
