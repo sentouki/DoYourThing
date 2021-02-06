@@ -144,8 +144,6 @@
                         "Lege {todoAction} am {todoDate}",
                         "Lege Termin {todoAction} am {todoDate}",
                         "Lege neue Aktivität {todoAction} am {todoDate}"
-                        
-                        
                     ]
                 },
                 {
@@ -245,11 +243,11 @@
                         "Streiche {deleteAction} am {deleteDate} von meiner Liste",
                         "Entferne {deleteAction} am {deleteDate} von der Liste",
                         "Lösche {deleteAction} am {deleteDate} von der Liste",
-                        "Streiche {deleteAction} am {deleteDate} von der Liste"                        
+                        "Streiche {deleteAction} am {deleteDate} von der Liste"
                     ]
                 },
                 {
-                    "name": "EditTodoIntent",
+                    "name": "EditTodoRequest",
                     "slots": [
                         {
                             "name": "editAction",
@@ -275,6 +273,26 @@
                             "samples": [
                                 "{editTime}",
                                 "um {editTime}"
+                            ]
+                        },
+                        {
+                            "name": "editNewDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "für den {editNewDate}",
+                                "den {editNewDate}",
+                                "{editNewDate}",
+                                "am {editNewDate}"
+                            ]
+                        },
+                        {
+                            "name": "editNewTime",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "für {editNewTime}",
+                                "gegen {editNewTime}",
+                                "{editNewTime}",
+                                "um {editNewTime}"
                             ]
                         }
                     ],
@@ -411,6 +429,33 @@
                         "Welche tu dus stehen bevor",
                         "Welche Aktivitäten stehen bevor",
                         "Welche Aufgaben stehen bevor"
+                    ]
+                },
+                {
+                    "name": "EditTodoIntent",
+                    "slots": [
+                        {
+                            "name": "editDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "{editDate}"
+                            ]
+                        },
+                        {
+                            "name": "editTime",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "{editTime}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Ändere das Datum auf {editDate}",
+                        "Ändere die Uhrzeit auf {editTime}",
+                        "Ändere Datum und Uhrzeit auf {editDate} {editTime}",
+                        "Ändere Datum und Uhrzeit auf {editDate} um {editTime}",
+                        "Ändere Datum und Uhrzeit auf {editTime} {editDate}",
+                        "Ändere Datum und Uhrzeit auf {editTime} am {editDate}"
                     ]
                 }
             ],
@@ -668,7 +713,7 @@
                     ]
                 },
                 {
-                    "name": "EditTodoIntent",
+                    "name": "EditTodoRequest",
                     "confirmationRequired": false,
                     "prompts": {},
                     "slots": [
@@ -698,6 +743,24 @@
                             "prompts": {
                                 "elicitation": "Elicit.Slot.1571269691305.765067465511"
                             }
+                        },
+                        {
+                            "name": "editNewDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.485414815244.1231586621426"
+                            }
+                        },
+                        {
+                            "name": "editNewTime",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.812087733513.124975247670"
+                            }
                         }
                     ]
                 },
@@ -713,6 +776,31 @@
                             "elicitationRequired": true,
                             "prompts": {
                                 "elicitation": "Elicit.Slot.80987199796.1101945224898"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "EditTodoIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "editDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.593918800095.756860240310"
+                            }
+                        },
+                        {
+                            "name": "editTime",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.593918800095.1151954773510"
                             }
                         }
                     ]
@@ -928,6 +1016,44 @@
                     {
                         "type": "PlainText",
                         "value": "Bis zu welchem Datum soll ich dir deine tu dus ausgeben?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.485414815244.1231586621426",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welchen neuen Termin soll ich eintragen?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "An welchem Tag ist Dein Tu Du?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Was ist das neue Datum deines Tu Du?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.812087733513.124975247670",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Uhrzeit soll ich eintragen?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Um wie viel Uhr ist Dein Tu Du?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Um wie viel Uhr am {editNewDate} ist dein Tu Du?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Was ist die neue Uhreit?"
                     }
                 ]
             }
