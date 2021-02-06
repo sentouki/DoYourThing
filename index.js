@@ -3,6 +3,7 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk');
 const AWS = require('aws-sdk');
+const speechOutVar = require('./interactionModels/speechOutVariations.json')
 const skillBuilder = Alexa.SkillBuilders.standard();
 
 function setQuestion(handlerInput, questionAsked) {
@@ -11,6 +12,9 @@ function setQuestion(handlerInput, questionAsked) {
   handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
 }
 
+function selectRandom(array) {
+  return array[Math.floor(Math.random()*array.length)];
+}
 
 const CreateToDoIntentHandler = {
   canHandle(handlerInput) {
@@ -27,13 +31,12 @@ const CreateToDoIntentHandler = {
     _data.action = slots.todoAction.value;
     _data.date = slots.todoDate.value;  // TODO: check if date is complete (check for XX-XX)
     _data.time = slots.todoTime.value;
-    //_data.prio = slots.todoPrio.value || "0";
     data[key] = _data;
     data = Object.assign({}, data, oldData);
     handlerInput.attributesManager.setPersistentAttributes(data);
     await handlerInput.attributesManager.savePersistentAttributes(data);
 
-    const speechOutput = "Neues tu du wurde erstellt";
+    const speechOutput = selectRandom(speechOutVar["CreateToDoIntent"]);
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -112,12 +115,12 @@ const DeleteTodoIntentHandler = {
     var speechOutput;
     if (oldData[key]) {
       delete oldData[key];
-      speechOutput = "tu du wurde gelöscht";
+      speechOutput = selectRandom(speechOutVar["DeleteTodoIntent"]["success"]);
       handlerInput.attributesManager.setPersistentAttributes(oldData);
       await handlerInput.attributesManager.savePersistentAttributes(oldData);
     }
     else {
-      speechOutput = "tu du nicht gefunden";
+      speechOutput = selectRandom(speechOutVar["DeleteTodoIntent"]["notfound"]);
     }
     return handlerInput.responseBuilder
       .speak(speechOutput)
