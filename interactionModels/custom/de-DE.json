@@ -38,7 +38,7 @@
                     "samples": []
                 },
                 {
-                    "name": "CreateToDoIntent",
+                    "name": "CreateTodoIntent",
                     "slots": [
                         {
                             "name": "todoAction",
@@ -600,7 +600,7 @@
         "dialog": {
             "intents": [
                 {
-                    "name": "CreateToDoIntent",
+                    "name": "CreateTodoIntent",
                     "confirmationRequired": false,
                     "prompts": {},
                     "slots": [

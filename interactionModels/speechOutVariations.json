@@ -1,15 +1,34 @@
 {
-    "LaunchRequest":[],
-    "CreateToDoIntent": [
+    "LaunchRequest": [
+        "Willkommen, was kann ich für dich tun?"
+    ],
+    "CreateTodoIntent": [
         "Neues tu du wurde erstellt"
-        ],
+    ],
     "DeleteTodoIntent": {
-        "success":[
+        "success": [
             "tu du wurde gelöscht"
             ],
-        "notfound":[
+        "notfound": [
             "tu du nicht gefunden"
             ]
     },
-    "OverviewTodoIntent":[]
+    "OverviewTodoIntent": [
+        "Du hast noch folgende tu dus zu erledigen "
+    ],
+    "TodoToDateIntent": {
+        "hasToDos": [
+            "Du hast noch folgende tu dus zu erledigen "
+        ],
+        "hasnoToDos":[
+            "Du hast keine tu dus zu erledigen"
+        ]
+    },
+    "EditTodoIntent": [],
+    "StopIntent": [
+        "Tschüss",
+        "Auf Wiederseh, äh, ich meine, auf Wiederhören",
+        "Ok, bis zum nächsten Mal"
+    ],
+    "HelpIntent": []
 }

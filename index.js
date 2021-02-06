@@ -16,27 +16,42 @@ function selectRandom(array) {
   return array[Math.floor(Math.random()*array.length)];
 }
 
-const CreateToDoIntentHandler = {
+function fixDate(date) {
+  /* workaround: apparently if you don't specify the month or the year, 
+      Alexa just fills them with X, e.g. XXXX-XX-15
+      instead we want to fill the missing dates with the current year and month
+  */
+ if (!date.includes("X")) return date;
+ const currentYear = new Date().getFullYear();
+ var month = new Date().getMonth + 1;
+ if (month.length == 1) month = `0${month}`;
+ const currentMonth = month;
+ return date.replace("XXXX", currentYear).replace("XX", currentMonth);
+}
+
+const CreateTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
+    const IntentName = 'CreateTodoIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === 'CreateToDoIntent');
+        && request.intent.name === IntentName);
   },
   async handle(handlerInput) {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
     const oldData = await handlerInput.attributesManager.getPersistentAttributes();
     const _data = {};   // inner JSON object, contains data from slots
     var data = {};           // outer JSON object, containt inner JSON object and unique key
-    const key = `${slots.todoAction.value}+${slots.todoDate.value}+${slots.todoTime.value}`;
+    const date = fixDate(slots.todoDate.value);
+    const key = `${slots.todoAction.value}+${date}+${slots.todoTime.value}`;
     _data.action = slots.todoAction.value;
-    _data.date = slots.todoDate.value;  // TODO: check if date is complete (check for XX-XX)
+    _data.date = date;
     _data.time = slots.todoTime.value;
     data[key] = _data;
     data = Object.assign({}, data, oldData);
     handlerInput.attributesManager.setPersistentAttributes(data);
     await handlerInput.attributesManager.savePersistentAttributes(data);
 
-    const speechOutput = selectRandom(speechOutVar["CreateToDoIntent"]);
+    const speechOutput = selectRandom(speechOutVar[IntentName]);
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -49,8 +64,9 @@ const CreateToDoIntentHandler = {
 const OverviewTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
+    const IntentName = 'OverviewTodoIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === 'OverviewTodoIntent');
+        && request.intent.name === IntentName);
   },
   async handle(handlerInput) {
     const oldData = await handlerInput.attributesManager.getPersistentAttributes();
@@ -61,7 +77,7 @@ const OverviewTodoIntentHandler = {
       ToDos.push(Object.values(oldData)[i].action);
     }
     console.log(ToDos);
-    var speechOutput = "Du hast noch folgende tu dus zu erledigen ";
+    var speechOutput = selectRandom(speechOutVar[intentName]);
     ToDos.forEach(todo => speechOutput+= ', '+todo);
     console.log(speechOutput);
     return handlerInput.responseBuilder
@@ -73,8 +89,9 @@ const OverviewTodoIntentHandler = {
 const TodoToDateIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
+    const IntentName = 'TodoToDateIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === 'TodoToDateIntent');
+        && request.intent.name === IntentName);
   },
   async handle(handlerInput)  {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
@@ -91,9 +108,9 @@ const TodoToDateIntentHandler = {
       }
     }
     if (ToDos.length != 0) 
-      var speechOutput = "Du hast noch folgende tu dus zu erledigen ";
+      var speechOutput = selectRandom(speechOutVar[IntentName]["hasToDos"]);
     else 
-      var speechOutput = "du hast keine tu dus zu erledigen";
+      var speechOutput = selectRandom(speechOutVar[IntentName]["hasnoToDos"]);
     ToDos.forEach(todo => speechOutput+= ', '+todo);
     console.log(speechOutput);
     return handlerInput.responseBuilder
@@ -105,8 +122,9 @@ const TodoToDateIntentHandler = {
 const DeleteTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
+    const IntentName = 'DeleteTodoIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === 'DeleteTodoIntent');
+        && request.intent.name === IntentName);
   },
   async handle(handlerInput) {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
@@ -115,12 +133,12 @@ const DeleteTodoIntentHandler = {
     var speechOutput;
     if (oldData[key]) {
       delete oldData[key];
-      speechOutput = selectRandom(speechOutVar["DeleteTodoIntent"]["success"]);
+      speechOutput = selectRandom(speechOutVar[IntentName]["success"]);
       handlerInput.attributesManager.setPersistentAttributes(oldData);
       await handlerInput.attributesManager.savePersistentAttributes(oldData);
     }
     else {
-      speechOutput = selectRandom(speechOutVar["DeleteTodoIntent"]["notfound"]);
+      speechOutput = selectRandom(speechOutVar[IntentName]["notfound"]);
     }
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -136,7 +154,7 @@ const LaunchRequestHandler = {
   async handle(handlerInput) {
       const oldData = await handlerInput.attributesManager.getPersistentAttributes();
       var count = Object.keys(oldData).length;
-      var speechText = 'Willkommen, was kann ich für dich tun?';
+      var speechText = selectRandom(speechOutVar["LaunchRequest"]);
       console.log(`DATA counter: ${count}`);
       if (!count) 
       {
@@ -171,12 +189,13 @@ const NoIntentHandler = {
 };
 
 const HelpIntentHandler = {
+  // TODO: intent überarbeiten, um dem user sinnvolle hilfe und übersicht über die vorhandenen intents zu geben
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'IntentRequest'
         && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-      const speechText = 'You can say hello to me! How can I help?';
+      const speechText = selectRandom(speechOutVar["HelpIntent"]);
 
       return handlerInput.responseBuilder
         .speak(speechText)
@@ -191,7 +210,7 @@ const CancelAndStopIntentHandler = {
           || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
     },
    handle(handlerInput) {
-      const speechText = 'Goodbye!';
+      const speechText = selectRandom(speechOutVar["StopIntent"]);
       return handlerInput.responseBuilder
         .speak(speechText)
         .getResponse();
@@ -254,7 +273,7 @@ exports.handler = skillBuilder
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
-    CreateToDoIntentHandler,
+    CreateTodoIntentHandler,
     DeleteTodoIntentHandler,
     OverviewTodoIntentHandler,
     TodoToDateIntentHandler,
