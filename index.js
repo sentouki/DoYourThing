@@ -146,6 +146,33 @@ const DeleteTodoIntentHandler = {
   }
 };
 
+const DoneTodoIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    const IntentName = 'DoneTodoIntent';
+    return(request.type === 'IntentRequest'
+        && request.intent.name === IntentName);
+  },
+  async handle(handlerInput) {
+    const slots = handlerInput.requestEnvelope.request.intent.slots;
+    const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+    const key = `${slots.DeleteAction.value}+${slots.DeleteDate.value}+${slots.DeleteTime.value}`;
+    var speechOutput;
+    if (oldData[key]) {
+      delete oldData[key];
+      speechOutput = selectRandom(speechOutVar[IntentName]["success"]);
+      handlerInput.attributesManager.setPersistentAttributes(oldData);
+      await handlerInput.attributesManager.savePersistentAttributes(oldData);
+    }
+    else {
+      speechOutput = selectRandom(speechOutVar[IntentName]["notfound"]);
+    }
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .getResponse();
+  }
+};
+
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
@@ -275,6 +302,7 @@ exports.handler = skillBuilder
     SessionEndedRequestHandler,
     CreateTodoIntentHandler,
     DeleteTodoIntentHandler,
+    DoneTodoIntentHandler,
     OverviewTodoIntentHandler,
     TodoToDateIntentHandler,
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
