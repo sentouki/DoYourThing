@@ -77,7 +77,11 @@ const OverviewTodoIntentHandler = {
       ToDos.push(Object.values(oldData)[i].action);
     }
     console.log(ToDos);
-    var speechOutput = selectRandom(speechOutVar[intentName]);
+    if (ToDos.length > 7) {
+      var speechOutput = selectRandom(speechOutVar[intentName]["long"] + speechOutVar[intentName]["basic"]);
+    } else {
+      var speechOutput = selectRandom(speechOutVar[intentName]["basic"]);
+    }
     ToDos.forEach(todo => speechOutput+= ', '+todo);
     console.log(speechOutput);
     return handlerInput.responseBuilder

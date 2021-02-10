@@ -1,34 +1,91 @@
 {
     "LaunchRequest": [
-        "Willkommen, was kann ich für dich tun?"
+        "Willkommen, was kann ich für dich tun?",
+        "Willkommen, wie kann ich dir helfen?",
+        "Willkommen bei deiner Tu Du Liste",
+        "Naa, warst du heute schon fleißig?",
+        "Hallo, schön dich zu sehen",
+        "Hey Du, als du nicht da warst, habe ich schon mal mit der Arbeit angefangen",
+        "Hallo, wie kann ich behilflich sein?",
+        "Hast du das Geschirr gespült?"
     ],
     "CreateTodoIntent": [
-        "Neues tu du wurde erstellt"
+        "Neues Tu Du wurde erstellt",
+        "Neue Aufgabe wurde erstellt",
+        "Neuer Termin ist erstellt",
+        "Ich habe Deine Aufgabe aufgeschrieben",
+        "Ich habe deine Aktivität erstellt",
+        "Ich habe dein Tu Du erstellt",
+        "Ich habs mir notiert",
+        "Ist vermerkt",
+        "Hoffen wir, dass ich es nicht vergesse",
+        "Ich werde Dich dran erinnern",
+        "Was du heute kannst besorgen, das verschiebe nicht auf Morgen"
     ],
     "DeleteTodoIntent": {
         "success": [
-            "tu du wurde gelöscht"
+            "Tu Du wurde gelöscht",
+            "Vielleicht beim nächsten mal",
+            "Woran hat es gelegen?",
+            "Ich habe die Aufgabe gelöscht",
+            "Die Aufgabe ist gelöscht... wobei das hier ist Amazon..."
             ],
         "notfound": [
-            "tu du nicht gefunden"
+            "Tu Du nicht gefunden",
+            "Aufgabe nicht gefunden",
+            "Termin nicht gefunden",
+            "Ich konnte Deine Aufgabe nicht finden",
+            "Ich konnte Deinen Termin nicht finden",
+            "Ich konnte Dein Tu Du nicht finden",
+            "Ich konnte Dein Anliegen nicht finden"
             ]
     },
-    "OverviewTodoIntent": [
-        "Du hast noch folgende tu dus zu erledigen "
-    ],
+    "OverviewTodoIntent": {
+        "basic": [
+            "Du hast noch folgende Tu Dus zu erledigen",
+            "Es sind noch folgende Tu Dus zu erledigen",
+            "Du hast noch folgende Aufgaben zu erledigen",
+            "Es sind noch folgende Aufgaben zu erledigen",
+            "Folgende To Dus sind noch offen",
+            "Es sind noch folgende Tu Dus offen",
+            "Folgende Aufgaben sind noch offen",
+            "Es sind noch folgende Aufgaben offen"
+        ],
+        "long": [
+            "Ohje, das sind einige",
+            "Du hast noch einiges zu tun",
+            "Du solltest den Feierabend etwas verschieben",
+            "Die Liste ist noch ziemlich voll"
+            ]
+    },
     "TodoToDateIntent": {
         "hasToDos": [
-            "Du hast noch folgende tu dus zu erledigen "
+            "Du hast noch folgende Tu Dus zu erledigen",
+            "Bis zum Stichtag sind noch folgende Aufgaben zu erledgen",
+            "Bis Tag X sind folgende Termine offen",
+            "Bis dahin sind folgende Tu Dus zu erledigen",
+            "Auf Deiner Liste stehen bis dahin noch"
         ],
         "hasnoToDos":[
-            "Du hast keine tu dus zu erledigen"
+            "Du hast keine Tu Dus zu erledigen",
+            "Deine Liste ist leer",
+            "Du hast nichts zu erledigen",
+            "Du hast bereits alle Aufgaben erledigt",
+            "Alles erledigt, weiter so"
         ]
     },
     "EditTodoIntent": [],
     "StopIntent": [
         "Tschüss",
         "Auf Wiederseh, äh, ich meine, auf Wiederhören",
-        "Ok, bis zum nächsten Mal"
+        "Ok, bis zum nächsten Mal",
+        "Hauste rein",
+        "Immer fleißig arbeiten",
+        "Bis zum nächsten mal, ich fang dann schon mal mit der Arbeit an",
+        "Mach nicht alles ohne mich",
+        "Lass mir auch ein bisschen Arbeit",
+        "Auf Wiedersehen",
+        "Brauchts gar nicht wiederkommen, bevor das Geschirr gespült ist"
     ],
     "HelpIntent": []
 }
