@@ -432,30 +432,77 @@
                     ]
                 },
                 {
-                    "name": "__EditTodoIntent_exp",
+                    "name": "DoneTodoIntent",
                     "slots": [
                         {
-                            "name": "editDate",
-                            "type": "AMAZON.DATE",
+                            "name": "doneActivity",
+                            "type": "ACTIVITY",
                             "samples": [
-                                "{editDate}"
+                                "{doneActivity}",
+                                "der {doneActivity}",
+                                "die {doneActivity}",
+                                "das {doneActivity}"
                             ]
                         },
                         {
-                            "name": "editTime",
+                            "name": "doneDate",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "{doneDate}",
+                                "am {doneDate}",
+                                "den {doneDate}",
+                                "zum {doneDate}",
+                                "bis zum {doneDate}"
+                            ]
+                        },
+                        {
+                            "name": "doneTime",
                             "type": "AMAZON.TIME",
                             "samples": [
-                                "{editTime}"
+                                "{doneTime}",
+                                "um {doneTime}",
+                                "um {doneTime} Uhr",
+                                "gegen {doneTime}"
                             ]
                         }
                     ],
                     "samples": [
-                        "Ändere das Datum auf {editDate}",
-                        "Ändere die Uhrzeit auf {editTime}",
-                        "Ändere Datum und Uhrzeit auf {editDate} {editTime}",
-                        "Ändere Datum und Uhrzeit auf {editDate} um {editTime}",
-                        "Ändere Datum und Uhrzeit auf {editTime} {editDate}",
-                        "Ändere Datum und Uhrzeit auf {editTime} am {editDate}"
+                        "Ich habe eine Aufgabe erledigt",
+                        "Ich habe eine Tu Du erledigt",
+                        "Ich habe einen Termin erledigt",
+                        "Ich habe eine Aktivität erledigt",
+                        "Ich habe eine Aufgabe abgearbeitet",
+                        "Ich habe eine Tu Du abgearbeitet",
+                        "Ich habe einen Termin abgearbeitet",
+                        "Ich habe eine Aktivität abgearbeitet",
+                        "Du kannst eine Aufgabe abhaken",
+                        "Du kannst ein Tu Du abhaken",
+                        "Du kannst einen Termin abhaken",
+                        "Du kannst eine Aktivität abhaken",
+                        "Ich habe die Aufgabe {doneActivity} erledigt",
+                        "Ich habe das Tu Du {doneActivity} erledigt",
+                        "Ich habe den Termin {doneActivity} erledigt",
+                        "Ich habe die Aktivität {doneActivity} erledigt",
+                        "Ich habe die Aufgabe {doneActivity} abgearbeitet",
+                        "Ich habe das Tu Du {doneActivity} abgearbeitet",
+                        "Ich habe den Termin {doneActivity} abgearbeitet",
+                        "Ich habe die Aktivität {doneActivity} abgearbeitet",
+                        "Du kannst die Aufgabe {doneActivity} abhaken",
+                        "Du kannst das Tu Du {doneActivity} abhaken",
+                        "Du kannst den Termin {doneActivity} abhaken",
+                        "Du kannst die Aktivität {doneActivity} abhaken",
+                        "Ich habe die Aufgabe {doneActivity} vom {doneDate} erledigt",
+                        "Ich habe das Tu Du {doneActivity} vom {doneDate} erledigt",
+                        "Ich habe den Termin {doneActivity} vom {doneDate} erledigt",
+                        "Ich habe die Aktivität {doneActivity} vom {doneDate} erledigt",
+                        "Ich habe die Aufgabe {doneActivity} vom {doneDate} abgearbeitet",
+                        "Ich habe das Tu Du {doneActivity} vom {doneDate} abgearbeitet",
+                        "Ich habe den Termin {doneActivity} vom {doneDate} abgearbeitet",
+                        "Ich habe die Aktivität {doneActivity} vom {doneDate} abgearbeitet",
+                        "Du kannst die Aufgabe {doneActivity} vom {doneDate} abhaken",
+                        "Du kannst das Tu Du {doneActivity} vom {doneDate} abhaken",
+                        "Du kannst den Termin {doneActivity} vom {doneDate} abhaken",
+                        "Du kannst die Aktivität {doneActivity} vom {doneDate} abhaken"
                     ]
                 }
             ],
@@ -804,6 +851,40 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "DoneTodoIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "doneActivity",
+                            "type": "ACTIVITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.847373844909.879511414325"
+                            }
+                        },
+                        {
+                            "name": "doneDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.847373844909.786308251224"
+                            }
+                        },
+                        {
+                            "name": "doneTime",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.847373844909.1528308458740"
+                            }
+                        }
+                    ]
                 }
             ],
             "delegationStrategy": "ALWAYS"
@@ -1054,6 +1135,89 @@
                     {
                         "type": "PlainText",
                         "value": "Was ist die neue Uhreit?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.847373844909.786308251224",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ich brauch dafür das Datum"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Kannst du mir bitte das Datum nennen"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Nenne mir bitte das Datum"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "An welchem Tag habe ich das Tu Du gespeichert"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Für welches Datum war für das Tu Du vorgesehen"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welches Datum war für das Tu Du notiert"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welches Datum war für das Tu Du eingetragen"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.847373844909.879511414325",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Nenne mir bitte das Tu Du"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Was war deine Aufgabe"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Was kann ich abhaken"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aktivität hast du erledigt"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welches Tu Du hast du erledigt"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Aufgabe hast du erledigt"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.847373844909.1528308458740",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Nenne mir bitte die Uhrzeit"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Zu welcher Uhrzeit war die Aktivität geplant"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Welche Uhrzeit hast du bei mir hinterlegt"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Zu welcher Uhrzeit stand das Tu Du an"
                     }
                 ]
             }
