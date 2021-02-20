@@ -247,7 +247,7 @@
                     ]
                 },
                 {
-                    "name": "EditTodoRequest",
+                    "name": "EditTodoIntent",
                     "slots": [
                         {
                             "name": "editAction",
@@ -429,33 +429,6 @@
                         "Welche tu dus stehen bevor",
                         "Welche Aktivitäten stehen bevor",
                         "Welche Aufgaben stehen bevor"
-                    ]
-                },
-                {
-                    "name": "EditTodoIntent",
-                    "slots": [
-                        {
-                            "name": "editDate",
-                            "type": "AMAZON.DATE",
-                            "samples": [
-                                "{editDate}"
-                            ]
-                        },
-                        {
-                            "name": "editTime",
-                            "type": "AMAZON.TIME",
-                            "samples": [
-                                "{editTime}"
-                            ]
-                        }
-                    ],
-                    "samples": [
-                        "Ändere das Datum auf {editDate}",
-                        "Ändere die Uhrzeit auf {editTime}",
-                        "Ändere Datum und Uhrzeit auf {editDate} {editTime}",
-                        "Ändere Datum und Uhrzeit auf {editDate} um {editTime}",
-                        "Ändere Datum und Uhrzeit auf {editTime} {editDate}",
-                        "Ändere Datum und Uhrzeit auf {editTime} am {editDate}"
                     ]
                 }
             ],
