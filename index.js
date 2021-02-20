@@ -133,12 +133,12 @@ const DeleteTodoIntentHandler = {
     var speechOutput;
     if (oldData[key]) {
       delete oldData[key];
-      speechOutput = selectRandom(speechOutVar[IntentName]["success"]);
+      speechOutput = selectRandom(speechOutVar[IntentName]);
       handlerInput.attributesManager.setPersistentAttributes(oldData);
       await handlerInput.attributesManager.savePersistentAttributes(oldData);
     }
     else {
-      speechOutput = selectRandom(speechOutVar[IntentName]["notfound"]);
+      speechOutput = selectRandom(speechOutVar["NotFound"]);
     }
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -160,12 +160,12 @@ const DoneTodoIntentHandler = {
     var speechOutput;
     if (oldData[key]) {
       delete oldData[key];
-      speechOutput = selectRandom(speechOutVar[IntentName]["success"]);
+      speechOutput = selectRandom(speechOutVar[IntentName]);
       handlerInput.attributesManager.setPersistentAttributes(oldData);
       await handlerInput.attributesManager.savePersistentAttributes(oldData);
     }
     else {
-      speechOutput = selectRandom(speechOutVar[IntentName]["notfound"]);
+      speechOutput = selectRandom(speechOutVar["NotFound"]);
     }
     return handlerInput.responseBuilder
       .speak(speechOutput)
@@ -192,10 +192,10 @@ const EditTodoIntentHandler = {
         "time": slots.editNewTime
       }
       oldData[key] = newTodo;
-      speechOutput = selectRandom(speechOutVar[IntentName]["success"]);
+      speechOutput = selectRandom(speechOutVar[IntentName]);
     }
     else{
-      speechOutput = selectRandom(speechOutVar[IntentName]["notfound"]);
+      speechOutput = selectRandom(speechOutVar["NotFound"]);
     }
     return handlerInput.responseBuilder
       .speak(speechOutput)

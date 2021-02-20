@@ -22,24 +22,13 @@
         "Ich werde Dich dran erinnern",
         "Was du heute kannst besorgen, das verschiebe nicht auf Morgen"
     ],
-    "DeleteTodoIntent": {
-        "success": [
+    "DeleteTodoIntent": [
             "Tu Du wurde gelöscht",
             "Vielleicht beim nächsten mal",
             "Woran hat es gelegen?",
             "Ich habe die Aufgabe gelöscht",
             "Die Aufgabe ist gelöscht... wobei das hier ist Amazon..."
-            ],
-        "notfound": [
-            "Tu Du nicht gefunden",
-            "Aufgabe nicht gefunden",
-            "Termin nicht gefunden",
-            "Ich konnte Deine Aufgabe nicht finden",
-            "Ich konnte Deinen Termin nicht finden",
-            "Ich konnte Dein Tu Du nicht finden",
-            "Ich konnte Dein Anliegen nicht finden"
-            ]
-    },
+    ],
     "OverviewTodoIntent": {
         "basic": [
             "Du hast noch folgende Tu Dus zu erledigen",
@@ -74,7 +63,22 @@
             "Alles erledigt, weiter so"
         ]
     },
-    "EditTodoIntent": [],
+    "EditTodoIntent": [
+        "Ich habe dein Tu Du bearbeitet",
+        "Deine Aufgabe ist geändert",
+        "Ich habe deine Aktivität überarbeitet",
+        "Die Änderung wurder erfolgreich übernommen",
+        "Die Änderung wurder erfolgreich durchgeführt"
+    ],
+    "DoneTodoIntent": [
+        "Ich habe deine Aufgabe abgehakt",
+        "Ich habe das Tu Du als erledigt markiert",
+        "Wow das ging aber schnell",
+        "Ich wusste du schiebst das nicht länger auf",
+        "Das hast du gut gemacht",
+        "Ich bin stolz auf dich",
+        "Ich hätte dir gerne bei der Arbeit geholfen"
+    ],
     "StopIntent": [
         "Tschüss",
         "Auf Wiederseh, äh, ich meine, auf Wiederhören",
@@ -86,6 +90,15 @@
         "Lass mir auch ein bisschen Arbeit",
         "Auf Wiedersehen",
         "Brauchts gar nicht wiederkommen, bevor das Geschirr gespült ist"
+    ],
+    "NotFound": [
+        "Tu Du nicht gefunden",
+        "Aufgabe nicht gefunden",
+        "Termin nicht gefunden",
+        "Ich konnte Deine Aufgabe nicht finden",
+        "Ich konnte Deinen Termin nicht finden",
+        "Ich konnte Dein Tu Du nicht finden",
+        "Ich konnte Dein Anliegen nicht finden"
     ],
     "HelpIntent": []
 }
