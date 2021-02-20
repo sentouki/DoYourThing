@@ -1,8 +1,4 @@
-// This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
-// Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
-// session persistence, api calls, and more.
 const Alexa = require('ask-sdk');
-const AWS = require('aws-sdk');
 const speechOutVar = require('./interactionModels/speechOutVariations.json')
 const skillBuilder = Alexa.SkillBuilders.standard();
 
@@ -177,6 +173,37 @@ const DoneTodoIntentHandler = {
   }
 };
 
+const EditTodoIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    const IntentName = 'EditTodoIntent';
+    return(request.type === 'IntentRequest'
+        && request.intent.name === IntentName);
+  },
+  async handle(handlerInput) {
+    const slots = handlerInput.requestEnvelope.request.intent.slots;
+    const oldData = await handlerInput.attributesManager.getPersistentAttributes();
+    const key = `${slots.editAction.value}+${slots.editDate.value}+${slots.editTime.value}`;
+    var speechOutput;
+    if (oldData[key]) {
+      const newTodo = {
+        "action": oldData[key].action,
+        "date": slots.editNewDate.value,
+        "time": slots.editNewTime
+      }
+      oldData[key] = newTodo;
+      speechOutput = selectRandom(speechOutVar[IntentName]["success"]);
+    }
+    else{
+      speechOutput = selectRandom(speechOutVar[IntentName]["notfound"]);
+    }
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .getResponse();
+  }
+};
+
+
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
@@ -309,6 +336,7 @@ exports.handler = skillBuilder
     DoneTodoIntentHandler,
     OverviewTodoIntentHandler,
     TodoToDateIntentHandler,
+    EditTodoIntentHandler,
     IntentReflectorHandler) // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
   .addErrorHandlers(
     ErrorHandler)

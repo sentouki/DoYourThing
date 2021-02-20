@@ -247,7 +247,7 @@
                     ]
                 },
                 {
-                    "name": "EditTodoRequest",
+                    "name": "EditTodoIntent",
                     "slots": [
                         {
                             "name": "editAction",
@@ -432,7 +432,7 @@
                     ]
                 },
                 {
-                    "name": "EditTodoIntent",
+                    "name": "__EditTodoIntent_exp",
                     "slots": [
                         {
                             "name": "editDate",
@@ -713,7 +713,7 @@
                     ]
                 },
                 {
-                    "name": "EditTodoRequest",
+                    "name": "EditTodoIntent",
                     "confirmationRequired": false,
                     "prompts": {},
                     "slots": [
@@ -781,7 +781,7 @@
                     ]
                 },
                 {
-                    "name": "EditTodoIntent",
+                    "name": "__EditTodoIntent_exp",
                     "confirmationRequired": false,
                     "prompts": {},
                     "slots": [
