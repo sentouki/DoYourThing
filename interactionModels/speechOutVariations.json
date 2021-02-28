@@ -115,5 +115,12 @@
         "Ich konnte Dein Tu Du nicht finden",
         "Ich konnte Dein Anliegen nicht finden"
     ],
-    "HelpIntent": []
+    "HelpIntent": [
+        "Folgende Funktionen stehen dir zur Verfügung: Erstellen, Löschen, Ändern sowie das Vorlesen deiner offenen Aufgaben",
+        "Mit 'Erstelle neue Aufgabe' kannst du ein neues tu du anlegen. Mit 'Lösche eine Aufgabe' kannst du diese wieder löschen",
+        "Sag 'bearbeite ein tu du' um eine bereits erstellte Aufgabe zu editieren",
+        "Wenn du eine Aufgabe erledigt hast, sag einfach 'Du kannst eine Aufgabe abhaken'. Wenn du einfach eine Aufgabe löschen willst, dann sag 'Lösche eine Aufgabe",
+        "Mit 'Was ist noch offen' lese ich dir alle noch offenen tu dus vor"
+
+    ]
 }

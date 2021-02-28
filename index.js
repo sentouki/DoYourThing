@@ -2,12 +2,6 @@ const Alexa = require('ask-sdk');
 const speechOutVar = require('./interactionModels/speechOutVariations.json')
 const skillBuilder = Alexa.SkillBuilders.standard();
 
-function setQuestion(handlerInput, questionAsked) {
-  const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-  sessionAttributes.questionAsked = questionAsked;
-  handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-}
-
 function selectRandom(array) {
   return array[Math.floor(Math.random()*array.length)];
 }
@@ -209,7 +203,7 @@ const LaunchRequestHandler = {
       console.log(`DATA counter: ${count}`);
       if (!count) 
       {
-        speechText = 'Willkommen bei tu du. Sag "Alexa, hilfe", um zu erfahren, was ich kann';
+        speechText = 'Willkommen bei tu dein ding. Sag "Alexa, hilfe", um zu erfahren, was ich kann';
       }
       return handlerInput.responseBuilder
         .speak(speechText)
@@ -217,26 +211,6 @@ const LaunchRequestHandler = {
         .getResponse();
     }
     
-};
-
-const YesIntentHandler = {
-  canHandle(handlerInput) {
-      return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-          && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.YesIntent';
-  },
-  handle(handlerInput) {
-
-  }
-
-};
-
-const NoIntentHandler = {
-  canHandle(handlerInput) {
-      return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-          && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.NoIntent';
-  },
-  handle(handlerInput) {
-  }
 };
 
 const HelpIntentHandler = {
