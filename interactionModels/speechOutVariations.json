@@ -1,0 +1,126 @@
+{
+    "LaunchRequest": [
+        "Willkommen, was kann ich für dich tun?",
+        "Willkommen, wie kann ich dir helfen?",
+        "Willkommen bei deiner Tu Du Liste",
+        "Naa, warst du heute schon fleißig?",
+        "Hallo, schön dich zu sehen",
+        "Hey Du, als du nicht da warst, habe ich schon mal mit der Arbeit angefangen",
+        "Hallo, wie kann ich behilflich sein?",
+        "Hast du das Geschirr gespült?"
+    ],
+    "CreateTodoIntent": [
+        "Neues Tu Du wurde erstellt",
+        "Neue Aufgabe wurde erstellt",
+        "Neuer Termin ist erstellt",
+        "Ich habe Deine Aufgabe aufgeschrieben",
+        "Ich habe deine Aktivität erstellt",
+        "Ich habe dein Tu Du erstellt",
+        "Ich habs mir notiert",
+        "Ist vermerkt",
+        "Hoffen wir, dass ich es nicht vergesse",
+        "Ich werde Dich dran erinnern",
+        "Was du heute kannst besorgen, das verschiebe nicht auf Morgen"
+    ],
+    "DeleteTodoIntent": [
+            "Tu Du wurde gelöscht",
+            "Vielleicht beim nächsten mal",
+            "Woran hat es gelegen?",
+            "Ich habe die Aufgabe gelöscht",
+            "Die Aufgabe ist gelöscht... wobei das hier ist Amazon..."
+    ],
+    "OverviewTodoIntent": {
+        "basic": [
+            "Du hast noch folgende Tu Dus zu erledigen",
+            "Es sind noch folgende Tu Dus zu erledigen",
+            "Du hast noch folgende Aufgaben zu erledigen",
+            "Es sind noch folgende Aufgaben zu erledigen",
+            "Folgende To Dus sind noch offen",
+            "Es sind noch folgende Tu Dus offen",
+            "Folgende Aufgaben sind noch offen",
+            "Es sind noch folgende Aufgaben offen"
+        ],
+        "long": [
+            "Ohje, das sind einige",
+            "Du hast noch einiges zu tun",
+            "Du solltest den Feierabend etwas verschieben",
+            "Die Liste ist noch ziemlich voll"
+            ]
+    },
+    "TodoToDateIntent": {
+        "hasToDos": [
+            "Du hast noch folgende Tu Dus zu erledigen",
+            "Bis zum Stichtag sind noch folgende Aufgaben zu erledgen",
+            "Bis Tag X sind folgende Termine offen",
+            "Bis dahin sind folgende Tu Dus zu erledigen",
+            "Auf Deiner Liste stehen bis dahin noch"
+        ],
+        "hasnoToDos":[
+            "Du hast keine Tu Dus zu erledigen",
+            "Deine Liste ist leer",
+            "Du hast nichts zu erledigen",
+            "Du hast bereits alle Aufgaben erledigt",
+            "Alles erledigt, weiter so"
+        ]
+    },
+    "EditTodoIntent": [
+        "Ich habe dein Tu Du bearbeitet",
+        "Deine Aufgabe ist geändert",
+        "Ich habe deine Aktivität überarbeitet",
+        "Die Änderung wurder erfolgreich übernommen",
+        "Die Änderung wurder erfolgreich durchgeführt"
+    ],
+    "DoneTodoIntent": [
+        "Ich habe deine Aufgabe abgehakt",
+        "Ich habe das Tu Du als erledigt markiert",
+        "Wow, das ging aber schnell",
+        "Ich wusste, Du schiebst das nicht länger auf",
+        "Das hast Du gut gemacht",
+        "Ich bin stolz auf Dich",
+        "Ich hätte Dir gerne bei der Arbeit geholfen",
+        "Gut gemacht, die Aufgabe ist abgehakt",
+        "Sehr gut, weiter so",
+        "Du bist stärker, als Deine stärkste Ausnahme",
+        "Glaube Du kannst und Du bist auf dem halben Weg",
+        "Jeder Tag ist eine neue Chance, das zu tun was Du möchtest",
+        "Eine Reise von 1000 Kilometern beginnt mit einem kleinen Schritt",
+        "Es ist nicht wichtig, wie groß der erste Schritt ist, sondern in welche Richtung er geht",
+        "Niemand weiß, was er kann, bis er es probiert hat",
+        "Gut gemacht, ein nicht jetzt kann sich sehr schnell in ein niemals verwandeln",
+        "Was Du mit guter Laune tust, fällt Dir nicht schwer",
+        "Nur wer selbst brennt, kann Feuer in anderen entfachen",
+        "Was immer Du tust, tue es mit ganzem Herzen",
+        "Tu es, oder tu es nicht, es gibt kein versuchen",
+        "Das Geheimnis des Erfolgs ist anzufangen",
+        "Erfolg hat drei Buchstaben, t u n"
+    ],
+    "StopIntent": [
+        "Tschüss",
+        "Auf Wiederseh, äh, ich meine, auf Wiederhören",
+        "Ok, bis zum nächsten Mal",
+        "Hauste rein",
+        "Immer fleißig arbeiten",
+        "Bis zum nächsten mal, ich fang dann schon mal mit der Arbeit an",
+        "Mach nicht alles ohne mich",
+        "Lass mir auch ein bisschen Arbeit",
+        "Auf Wiedersehen",
+        "Brauchts gar nicht wiederkommen, bevor das Geschirr gespült ist"
+    ],
+    "NotFound": [
+        "Tu Du nicht gefunden",
+        "Aufgabe nicht gefunden",
+        "Termin nicht gefunden",
+        "Ich konnte Deine Aufgabe nicht finden",
+        "Ich konnte Deinen Termin nicht finden",
+        "Ich konnte Dein Tu Du nicht finden",
+        "Ich konnte Dein Anliegen nicht finden"
+    ],
+    "HelpIntent": [
+        "Folgende Funktionen stehen dir zur Verfügung: Erstellen, Löschen, Ändern sowie das Vorlesen deiner offenen Aufgaben",
+        "Mit 'Erstelle neue Aufgabe' kannst du ein neues tu du anlegen. Mit 'Lösche eine Aufgabe' kannst du diese wieder löschen",
+        "Sag 'bearbeite ein tu du' um eine bereits erstellte Aufgabe zu editieren",
+        "Wenn du eine Aufgabe erledigt hast, sag einfach 'Du kannst eine Aufgabe abhaken'. Wenn du einfach eine Aufgabe löschen willst, dann sag 'Lösche eine Aufgabe",
+        "Mit 'Was ist noch offen' lese ich dir alle noch offenen tu dus vor"
+
+    ]
+}

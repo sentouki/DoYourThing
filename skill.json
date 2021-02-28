@@ -3,15 +3,16 @@
     "publishingInformation": {
       "locales": {
         "de-DE": {
-          "description": "Sample Full Description",
+          "description": "Der Alexa Skill Tu Dein Ding richtet sich an diejenigen User, die ihren Terminplaner schnell, unkompliziert und möglichst digital verwalten wollen. Nach dem Prinzip keep it simple, hat die Sprachanwendung keine unnützen Features, sondern beschränkt sich auf das Wesentliche.",
           "examplePhrases": [
             "Alexa öffne tu dein ding",
+            "Alexa öffne do your thing",
             "erstelle eine Aufgabe",
-            "hilfe"
+            "erstelle neues tu du"
           ],
           "keywords": [],
           "name": "DoYourThing",
-          "summary": "Sample Short Description"
+          "summary": "Dein Termin Planer für Alexa"
         }
       },
       "isAvailableWorldwide": false,
