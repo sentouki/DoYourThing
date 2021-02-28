@@ -28,9 +28,8 @@ function fixDate(date) {
 const CreateTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
-    const IntentName = 'CreateTodoIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === IntentName);
+        && request.intent.name === 'CreateTodoIntent');
   },
   async handle(handlerInput) {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
@@ -47,11 +46,10 @@ const CreateTodoIntentHandler = {
     handlerInput.attributesManager.setPersistentAttributes(data);
     await handlerInput.attributesManager.savePersistentAttributes(data);
 
-    const speechOutput = selectRandom(speechOutVar[IntentName]);
+    const speechOutput = selectRandom(speechOutVar['CreateTodoIntent']);
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
-      .reprompt(speechOutput)
       .getResponse();
   }
 };
@@ -60,9 +58,8 @@ const CreateTodoIntentHandler = {
 const OverviewTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
-    const IntentName = 'OverviewTodoIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === IntentName);
+        && request.intent.name === 'OverviewTodoIntent');
   },
   async handle(handlerInput) {
     const oldData = await handlerInput.attributesManager.getPersistentAttributes();
@@ -74,9 +71,9 @@ const OverviewTodoIntentHandler = {
     }
     console.log(ToDos);
     if (ToDos.length > 7) {
-      var speechOutput = selectRandom(speechOutVar[intentName]["long"] + speechOutVar[intentName]["basic"]);
+      var speechOutput = selectRandom(speechOutVar['OverviewTodoIntent']["long"] + speechOutVar['OverviewTodoIntent']["basic"]);
     } else {
-      var speechOutput = selectRandom(speechOutVar[intentName]["basic"]);
+      var speechOutput = selectRandom(speechOutVar['OverviewTodoIntent']["basic"]);
     }
     ToDos.forEach(todo => speechOutput+= ', '+todo);
     console.log(speechOutput);
@@ -89,9 +86,8 @@ const OverviewTodoIntentHandler = {
 const TodoToDateIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
-    const IntentName = 'TodoToDateIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === IntentName);
+        && request.intent.name === 'TodoToDateIntent');
   },
   async handle(handlerInput)  {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
@@ -108,9 +104,9 @@ const TodoToDateIntentHandler = {
       }
     }
     if (ToDos.length != 0) 
-      var speechOutput = selectRandom(speechOutVar[IntentName]["hasToDos"]);
+      var speechOutput = selectRandom(speechOutVar['TodoToDateIntent']["hasToDos"]);
     else 
-      var speechOutput = selectRandom(speechOutVar[IntentName]["hasnoToDos"]);
+      var speechOutput = selectRandom(speechOutVar['TodoToDateIntent']["hasnoToDos"]);
     ToDos.forEach(todo => speechOutput+= ', '+todo);
     console.log(speechOutput);
     return handlerInput.responseBuilder
@@ -122,9 +118,8 @@ const TodoToDateIntentHandler = {
 const DeleteTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
-    const IntentName = 'DeleteTodoIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === IntentName);
+        && request.intent.name === 'DeleteTodoIntent');
   },
   async handle(handlerInput) {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
@@ -133,7 +128,7 @@ const DeleteTodoIntentHandler = {
     var speechOutput;
     if (oldData[key]) {
       delete oldData[key];
-      speechOutput = selectRandom(speechOutVar[IntentName]);
+      speechOutput = selectRandom(speechOutVar['DeleteTodoIntent']);
       handlerInput.attributesManager.setPersistentAttributes(oldData);
       await handlerInput.attributesManager.savePersistentAttributes(oldData);
     }
@@ -149,9 +144,8 @@ const DeleteTodoIntentHandler = {
 const DoneTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
-    const IntentName = 'DoneTodoIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === IntentName);
+        && request.intent.name === 'DoneTodoIntent');
   },
   async handle(handlerInput) {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
@@ -160,7 +154,7 @@ const DoneTodoIntentHandler = {
     var speechOutput;
     if (oldData[key]) {
       delete oldData[key];
-      speechOutput = selectRandom(speechOutVar[IntentName]);
+      speechOutput = selectRandom(speechOutVar['DoneTodoIntent']);
       handlerInput.attributesManager.setPersistentAttributes(oldData);
       await handlerInput.attributesManager.savePersistentAttributes(oldData);
     }
@@ -176,9 +170,8 @@ const DoneTodoIntentHandler = {
 const EditTodoIntentHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
-    const IntentName = 'EditTodoIntent';
     return(request.type === 'IntentRequest'
-        && request.intent.name === IntentName);
+        && request.intent.name === 'EditTodoIntent');
   },
   async handle(handlerInput) {
     const slots = handlerInput.requestEnvelope.request.intent.slots;
@@ -192,7 +185,7 @@ const EditTodoIntentHandler = {
         "time": slots.editNewTime
       }
       oldData[key] = newTodo;
-      speechOutput = selectRandom(speechOutVar[IntentName]);
+      speechOutput = selectRandom(speechOutVar['EditTodoIntent']);
     }
     else{
       speechOutput = selectRandom(speechOutVar["NotFound"]);
